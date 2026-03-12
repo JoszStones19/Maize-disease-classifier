@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset
+dataset/
+
+# Tensorflow models
+*.h5
+*.keras
+*.ckpt
+*.tflite
+
+# Logs
+logs/
+
+# Flutter build files
+flutter_app/build/
+flutter_app/.dart_tool/
+
+# System files
+.DS_Store
+Thumbs.db
