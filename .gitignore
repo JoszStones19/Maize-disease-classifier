@@ -2,6 +2,7 @@
 *.class
 *.log
 *.pyc
+*.pyo
 *.swp
 .DS_Store
 .atom/
@@ -11,17 +12,13 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+Thumbs.db
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -42,7 +39,26 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android Studio build artifacts
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Python
+__pycache__/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset
+dataset/
+
+# ML Models
+*.h5
+*.keras
+*.ckpt
+*.tflite
+*.pth
+
+# Logs
+logs/
