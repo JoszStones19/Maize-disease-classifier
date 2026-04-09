@@ -1,93 +1,63 @@
-# Maize Doctor 🌽
+Maize Doctor
 
-Maize Doctor is a Flutter mobile application for maize leaf disease screening. It lets a farmer take or upload a leaf photo, send it to a Flask API, and view a clean diagnosis screen with confidence, alternatives, treatment guidance, and local scan history.
+Maize Doctor is a Flutter mobile application that helps users detect maize leaf diseases using image analysis. Users can capture or upload a leaf image, send it to a backend API, and receive a diagnosis with confidence levels and basic treatment guidance.
 
-## Features
+Features
+Capture image using camera or select from gallery
+Preview image before analysis
+Send image to Flask API for prediction
+Display diagnosis with confidence score
+Show alternative possible diseases
+Store scan history locally
+Mock mode for testing without backend
 
-- Camera and gallery image input
-- Preview before analysis
-- Dio-based Flask API integration
-- Mock mode for demos without a backend
-- Local scan history using `shared_preferences`
-- Disease guide for common maize leaf conditions
-- Profile dashboard with simple analytics
-- Configurable backend base URL
+Tech Stack
+Flutter (Dart)
+Provider (state management)
+GoRouter (navigation)
+Dio (API requests)
+image_picker
+shared_preferences
 
-## Tech stack
+Project Structure
 
-- Flutter + Dart
-- Provider for state management
-- GoRouter for navigation
-- Dio for HTTP
-- image_picker for camera/gallery
-- shared_preferences for local persistence
-- Google Fonts for typography
-
-## Project structure
-
-```text
 lib/
 ├── main.dart
 ├── app/
-│   └── router.dart
 ├── screens/
 ├── widgets/
 ├── services/
 ├── providers/
 ├── models/
 └── constants/
-```
 
-## Setup
+Setup
 
-1. Install Flutter.
-2. Open this project folder.
-3. Run:
-
-```bash
 flutter pub get
 flutter run
-```
 
-## Backend configuration
+Backend Configuration
 
-Edit:
+The app connects to a Flask API for disease prediction. During development, the backend URL is defined in the project constants file.
 
-```dart
-lib/constants/api_constants.dart
-```
+Mock mode is enabled by default, so the app can still run and demonstrate functionality without requiring a live server.
 
-Update `ApiConstants.baseUrl` to your Flask server IP, for example:
+Enabled by default:
 
-```dart
-static const String baseUrl = 'http://192.168.1.10:5000';
-```
-
-## Mock mode
-
-Mock mode is enabled by default so the app is demo-ready even without the real backend.
-
-In `lib/constants/api_constants.dart`:
-
-```dart
 static const bool mockMode = true;
-```
 
-Set it to `false` when your Flask API is running.
+Set to false when backend is available.
 
-## Expected API contract
 
-### POST `/predict`
+API Endpoints
+POST /predict
 
 Request:
 
-```json
-{ "image": "<base64 encoded string>" }
-```
+{ "image": "<base64 string>" }
 
 Response:
 
-```json
 {
   "disease": "northern_leaf_blight",
   "confidence": 0.92,
@@ -97,24 +67,16 @@ Response:
     { "label": "healthy", "confidence": 0.01 }
   ]
 }
-```
 
-### GET `/health`
-
-```json
+GET /health
 { "status": "ok" }
-```
 
-## Temporary backend note
+Limitations
+Requires internet when not in mock mode
+Accuracy depends on backend model
+No image compression yet
 
-The app already contains a temporary mock pipeline so your demo works today. Later, remove mock mode and point the base URL to your actual Flask model server.
-
-## Production notes
-
-Before shipping for real users, tighten these areas:
-
-- Add backend URL editing persistence to a settings form or admin-only config flow
-- Add retry/offline messaging for poor connectivity
-- Add image compression before upload for slow networks
-- Add unit/widget/integration tests
-- Add secure export/share workflow for history data
+Future Improvements
+Add image compression
+Improve offline support
+Enhance model accuracy
